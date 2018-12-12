@@ -51,6 +51,9 @@
     <ClCompile Include="Framework\TextObject.cpp">
       <Filter>Framework</Filter>
     </ClCompile>
+    <ClCompile Include="Dirt.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GridObject.h">
@@ -82,6 +85,9 @@
     </ClInclude>
     <ClInclude Include="Framework\TextObject.h">
       <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Dirt.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

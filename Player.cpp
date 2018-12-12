@@ -94,6 +94,8 @@ bool Player::AttemptMove(sf::Vector2i _direction)
 
 	// Check if any of those objects block movement
 	bool blocked = false;
+	GridObject* blocker = nullptr;
+
 	for (int i = 0; i < targetCellContents.size(); ++i)
 	{
 		if (targetCellContents[i]->GetBlocksMovement() == true)

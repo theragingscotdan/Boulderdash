@@ -2,7 +2,7 @@
 #include "Level.h"
 #include "Framework/AssetManager.h"
 #include "Wall.h"
-//#include "Storage.h"
+#include "Dirt.h"
 #include "Player.h"
 
 // library includes
@@ -192,13 +192,13 @@ void Level::LoadLevel(int _levelToLoad)
 				player->SetGridPosition(x, y);
 				m_contents[y][x].push_back(player);
 			}
-			/*else if (ch == 'S')
+			else if (ch == 'm')
 			{
-				Storage* storage = new Storage();
-				storage->SetLevel(this);
-				storage->SetGridPosition(x, y);
-				m_contents[y][x].push_back(storage);
-			} */
+				Dirt* dirt = new Dirt();
+				dirt->SetLevel(this);
+				dirt->SetGridPosition(x, y);
+				m_contents[y][x].push_back(dirt); 
+			} 
 			else
 			{
 				std::cerr << "Unrecognised character in level file: " << ch;
