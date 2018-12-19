@@ -4,6 +4,8 @@
 #include "Wall.h"
 #include "Dirt.h"
 #include "Player.h"
+#include "Diamond.h"
+#include "Boulder.h"
 
 // library includes
 #include <iostream>
@@ -199,6 +201,20 @@ void Level::LoadLevel(int _levelToLoad)
 				dirt->SetGridPosition(x, y);
 				m_contents[y][x].push_back(dirt); 
 			} 
+			else if (ch == 'G')
+			{
+				Diamond* diamond = new Diamond();
+				diamond->SetLevel(this);
+				diamond->SetGridPosition(x, y);
+				m_contents[y][x].push_back(diamond);
+			}
+			else if (ch == 'R')
+			{
+				Boulder* boulder = new Boulder();
+				boulder->SetLevel(this);
+				boulder->SetGridPosition(x, y);
+				m_contents[y][x].push_back(boulder);
+			}
 			else
 			{
 				std::cerr << "Unrecognised character in level file: " << ch;
@@ -270,6 +286,18 @@ bool Level::MoveObjectTo(GridObject* _toMove, sf::Vector2i _targetPos)
 	// return failure
 	return false;
 }
+
+/*bool Level::DeleteObject(sf::Vector2i _targetPos)
+{
+	// if the player walks onto a dirt
+
+
+
+	// delete it
+	
+
+	 
+} */
 
 std::vector < GridObject* > Level::GetObjectAt(sf::Vector2i _targetPos)
 {

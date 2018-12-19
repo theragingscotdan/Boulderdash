@@ -106,6 +106,7 @@ bool Player::AttemptMove(sf::Vector2i _direction)
 			
 	}
 
+
 	// If empty, move there
 	if (blocked == false)
 		return m_level->MoveObjectTo(this, targetPos);
