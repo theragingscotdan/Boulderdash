@@ -19,6 +19,7 @@ Level::Level()
 	
 {
 	LoadLevel(1);
+	
 }
 void Level::Draw(sf::RenderTarget& _target)
 {
@@ -287,17 +288,48 @@ bool Level::MoveObjectTo(GridObject* _toMove, sf::Vector2i _targetPos)
 	return false;
 }
 
-/*bool Level::DeleteObject(sf::Vector2i _targetPos)
+bool Level::DeleteObject(GridObject* _toDelete)
 {
 	// if the player walks onto a dirt
+	if (_toDelete != nullptr)
+		
+	{
+		
+		// get the current position of the grid object
+		sf::Vector2i oldPos = _toDelete->GetGridPosition();
 
+			// find the object in the list using an iterator and the find method
+			auto it = std::find(m_contents[oldPos.y][oldPos.x].begin(),
+				m_contents[oldPos.y][oldPos.x].end(), _toDelete);
 
+			// if we found the object at this location, 
+			// it will NOT equal the end of the vector
+			if (it != m_contents[oldPos.y][oldPos.x].end())
+			{
+				// we found the object!
 
-	// delete it
+				// remove it from the old position
+				m_contents[oldPos.y][oldPos.x].erase(it);
+
+				delete _toDelete;
+
+				// add it to its new position
+				//m_contents[_targetPos.y][_targetPos.x].push_back(_toMove);
+				//m_contents.clear();
+
+				// tell the object its new position
+				//_toMove->SetGridPosition(_targetPos);
+
+				// return sucess
+				return true;
+
+			}
+
+	}
+
 	
-
-	 
-} */
+	return false;
+} 
 
 std::vector < GridObject* > Level::GetObjectAt(sf::Vector2i _targetPos)
 {

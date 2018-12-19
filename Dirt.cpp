@@ -6,6 +6,7 @@
 Dirt::Dirt()
 	:GridObject()
 {
-	m_sprite.setTexture(AssetManager::GetTexture("graphics/ground.png"));
-	m_blocksMovement = false;
+	m_sprite.setTexture(AssetManager::GetTexture("graphics/DirtGround.png"));
+	m_blocksMovement = true;
+	
 };
