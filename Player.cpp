@@ -3,6 +3,7 @@
 #include "Framework/AssetManager.h"
 #include "Level.h"
 #include "Dirt.h"
+#include "Diamond.h"
 
 Player::Player()
 	: GridObject()
@@ -87,7 +88,7 @@ bool Player::AttemptMove(sf::Vector2i _direction)
 	// Get current position
 	//Calculate target position
 	sf::Vector2i targetPos = m_gridPosition + _direction;
-	
+
 
 	// TODO: check if the space is empty
 	// Get list of objects in our target position
@@ -105,7 +106,7 @@ bool Player::AttemptMove(sf::Vector2i _direction)
 			blocker = targetCellContents[i];
 			m_bumpSound.play();
 		}
-			
+
 	}
 
 
@@ -119,7 +120,7 @@ bool Player::AttemptMove(sf::Vector2i _direction)
 		// if so (the thing is a box (not nullptr))
 		if (dirtPresent != nullptr)
 		{
-			
+
 			{
 				// move to new spot (where blocker was)
 				bool dirtDeleted = m_level->DeleteObject(dirtPresent);
@@ -127,11 +128,28 @@ bool Player::AttemptMove(sf::Vector2i _direction)
 			}
 
 		}
-	} 
+		else
+		{
 
-	// if movement is blocked, do nothing, return false
-	// default
+			Diamond* diamondPresent = dynamic_cast<Diamond*>(blocker);
 
-	return false;
-	
+			// if so (the thing is a box (not nullptr))
+			if (diamondPresent != nullptr)
+			{
+
+
+				// move to new spot (where blocker was)
+				bool diamondDeleted = m_level->DeleteObject(diamondPresent);
+				m_level->MoveObjectTo(this, targetPos);
+
+
+			}
+
+			// if movement is blocked, do nothing, return false
+			// default
+
+			return false;
+
+		}
+	}
 }

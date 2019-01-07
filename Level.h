@@ -27,6 +27,8 @@ public:
 	bool DeleteObject(GridObject* _toMove);
 	std::vector < GridObject* > GetObjectAt(sf::Vector2i _targetPos);
 
+	bool CheckComplete();
+
 private:
 
 	const float m_cellSize;

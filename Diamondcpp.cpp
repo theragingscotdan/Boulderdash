@@ -7,4 +7,5 @@ Diamond::Diamond()
 	: GridObject()
 {
 	m_sprite.setTexture(AssetManager::GetTexture("graphics/box.png"));
+	m_blocksMovement = true;
 }
