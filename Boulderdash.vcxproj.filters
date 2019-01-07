@@ -60,6 +60,9 @@
     <ClCompile Include="Boulder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Exit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GridObject.h">
@@ -99,6 +102,9 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Boulder.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Exit.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

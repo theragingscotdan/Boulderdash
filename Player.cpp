@@ -123,6 +123,7 @@ bool Player::AttemptMove(sf::Vector2i _direction)
 			{
 				// move to new spot (where blocker was)
 				bool dirtDeleted = m_level->DeleteObject(dirtPresent);
+				m_level->MoveObjectTo(this, targetPos);
 			}
 
 		}

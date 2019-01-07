@@ -6,6 +6,7 @@
 #include "Player.h"
 #include "Diamond.h"
 #include "Boulder.h"
+#include "Exit.h"
 
 // library includes
 #include <iostream>
@@ -14,8 +15,10 @@
 Level::Level()
 	: m_cellSize(64.0f)
 	, m_currentLevel(0)
+	, m_pendingLevel(0)
 	, m_background()
 	, m_contents()
+	
 	
 {
 	LoadLevel(1);
@@ -73,7 +76,14 @@ void Level::Update(sf::Time _frameTime)
 			}
 		}
 	}
-	
+	// IF there is a pending level waiting... 
+	if (m_pendingLevel != 0)
+	{
+		// load it
+		LoadLevel(m_pendingLevel);
+		// remove pending level
+		m_pendingLevel = 0;
+	}
 }
 void Level::Input(sf::Event _gameEvent)
 {
@@ -216,6 +226,13 @@ void Level::LoadLevel(int _levelToLoad)
 				boulder->SetGridPosition(x, y);
 				m_contents[y][x].push_back(boulder);
 			}
+			else if (ch == 'E')
+			{
+				Exit* exit = new Exit();
+				exit->SetLevel(this);
+				exit->SetGridPosition(x, y);
+				m_contents[y][x].push_back(exit);
+			}
 			else
 			{
 				std::cerr << "Unrecognised character in level file: " << ch;
@@ -312,6 +329,7 @@ bool Level::DeleteObject(GridObject* _toDelete)
 				m_contents[oldPos.y][oldPos.x].erase(it);
 
 				delete _toDelete;
+
 
 				// add it to its new position
 				//m_contents[_targetPos.y][_targetPos.x].push_back(_toMove);
