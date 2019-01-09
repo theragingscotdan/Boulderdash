@@ -5,7 +5,8 @@
 
 Boulder::Boulder()
 	: GridObject()
-	, m_pendingMove(0, 0)
+	, m_pendingFall(0, 0)
+	, m_secondsPerFall(0)
 	
 {
 	m_sprite.setTexture(AssetManager::GetTexture("graphics/boulder.png"));
@@ -15,20 +16,29 @@ Boulder::Boulder()
 
 void Boulder::Update(sf::Time _frameTime)
 {
-
+	m_secondsPerFall += _frameTime.asSeconds();
 	// If we have movement waiting to be processed,
-
-	if (m_pendingMove.x != 0 || m_pendingMove.y != 0)
+	if (m_secondsPerFall > 1.5f)
 	{
 		// move in that direction
-		bool moveSuccessful = AttemptFall(m_pendingMove);
+		bool moveSuccessful = AttemptFall(sf::Vector2i(0, 1));
 
-		
-
-		// and clear the pending movement
-		m_pendingMove = sf::Vector2i(0, 0);
+		m_secondsPerFall = 0;
 
 
+	/*	if (m_pendingFall.x != 0 || m_pendingFall.y != 0)
+		{
+			// move in that direction
+			bool moveSuccessful = AttemptFall(m_pendingFall);
+
+			m_secondsPerFall = 0;
+
+
+			// and clear the pending movement
+			m_pendingFall = sf::Vector2i(0, 0);
+
+
+		} */
 	}
 }
 
@@ -61,6 +71,7 @@ bool Boulder::AttemptFall(sf::Vector2i _direction)
 	// If empty, move there
 	if (blocked == false)
 		return m_level->MoveObjectTo(this, targetPos);
+
 	else
 	{
 		// we were blocked!
@@ -80,5 +91,7 @@ bool Boulder::AttemptFall(sf::Vector2i _direction)
 				return m_level->MoveObjectTo(this, targetPos);
 			} */
 		
+		
 	}
+	return false;
 }
