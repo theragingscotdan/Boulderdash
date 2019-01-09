@@ -2,17 +2,20 @@
 #include "Boulder.h"
 #include "Framework/AssetManager.h"
 #include "Level.h"
+#include "Player.h"
 
 Boulder::Boulder()
 	: GridObject()
 	, m_pendingFall(0, 0)
 	, m_secondsPerFall(0)
+	, m_IsFalling(true)
 	
 {
 	m_sprite.setTexture(AssetManager::GetTexture("graphics/boulder.png"));
 
 	m_blocksMovement = true;
 }
+
 
 void Boulder::Update(sf::Time _frameTime)
 {

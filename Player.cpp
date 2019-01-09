@@ -4,6 +4,7 @@
 #include "Level.h"
 #include "Dirt.h"
 #include "Diamond.h"
+#include "Exit.h"
 
 Player::Player()
 	: GridObject()
@@ -81,6 +82,34 @@ void Player::Update(sf::Time _frameTime)
 	}
 }
 
+void Player::Kill()
+{
+	// reload current level
+	if (m_level != nullptr)
+		m_level->ReloadLevel();
+}
+
+void Player::Collide(GameObject& _collider)
+{
+	/*Level* castLevel = dynamic_cast <Level*>(&_collider);
+	
+
+	// only do the thing if player is not null
+	if (castPlayer = nullptr)
+	{
+		//  we were touch by the player
+
+		// if the player has the key
+		if (castLevel->GetIsOpen())
+		{
+			castLevel->LoadNextLevel();
+		}
+
+	} */
+}
+
+
+
 bool Player::AttemptMove(sf::Vector2i _direction)
 {
 	// Attempting to move in the given direction
@@ -142,6 +171,24 @@ bool Player::AttemptMove(sf::Vector2i _direction)
 				bool diamondDeleted = m_level->DeleteObject(diamondPresent);
 				m_level->MoveObjectTo(this, targetPos);
 
+				m_level->CheckComplete();
+			}
+			else
+			{
+
+				Exit* ExitOpen = dynamic_cast<Exit*>(blocker);
+
+				// if so (the thing is a box (not nullptr))
+				if (ExitOpen != nullptr)
+				{
+
+
+					if (m_level->GetIsOpen() == true)
+					{
+
+						m_level->LoadNextLevel();
+					}
+				}
 
 			}
 

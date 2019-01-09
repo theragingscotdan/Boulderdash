@@ -18,6 +18,7 @@ Level::Level()
 	, m_pendingLevel(0)
 	, m_background()
 	, m_contents()
+	, m_IsOpen(false)
 	
 	
 {
@@ -84,7 +85,9 @@ void Level::Update(sf::Time _frameTime)
 		// remove pending level
 		m_pendingLevel = 0;
 	}
+
 }
+
 void Level::Input(sf::Event _gameEvent)
 {
 	for (int y = 0; y < m_contents.size(); ++y)
@@ -253,11 +256,13 @@ void Level::LoadLevel(int _levelToLoad)
 void Level::ReloadLevel()
 {
 	LoadLevel(m_currentLevel);
+	m_IsOpen = false;
 }
 
 void Level::LoadNextLevel()
 {
 	LoadLevel(m_currentLevel + 1);
+	m_IsOpen = false;
 }
 
 float Level::GetCellSize()
@@ -383,24 +388,36 @@ bool Level::CheckComplete()
 				GridObject* thisObject = m_contents[y][x][z];
 
 				// check if it is a box via dynamic cast
-				Diamond* boxObject = dynamic_cast<Diamond*>(thisObject);
+				Diamond* diamondObject = dynamic_cast<Diamond*>(thisObject);
 
-
+				if (diamondObject != nullptr)
+				{
+					return false;
+				}
 			}
 		}
 	}
 
+
+
 	// all boxes were stored! (none we unstored
 	// so we completed the level
-
+	m_IsOpen = true;
 	// TODO: Play victory music!
 
 	// queue the next level to load during the next update
 	// (if we do it right way, we get an access violation
 	// due to update still running)
-	m_pendingLevel = m_currentLevel + 1;
+	/*if (m_IsOpen == true)
+		m_pendingLevel = m_currentLevel + 1;
+	*/
 
-
+	
 	// The level is complete so return true
 	return true;
+}
+
+bool Level::GetIsOpen()
+{
+	return m_IsOpen;
 }

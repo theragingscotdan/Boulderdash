@@ -28,6 +28,7 @@ public:
 	std::vector < GridObject* > GetObjectAt(sf::Vector2i _targetPos);
 
 	bool CheckComplete();
+	bool GetIsOpen();
 
 private:
 
@@ -36,6 +37,6 @@ private:
 	int m_pendingLevel;
 	std::vector< std::vector< sf::Sprite > > m_background;
 	std::vector< std::vector< std::vector< GridObject* > >  > m_contents;
-	
+	bool m_IsOpen;
 
 };
