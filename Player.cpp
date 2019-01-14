@@ -5,6 +5,7 @@
 #include "Dirt.h"
 #include "Diamond.h"
 #include "Exit.h"
+#include "Boulder.h"
 
 Player::Player()
 	: GridObject()
@@ -189,13 +190,36 @@ bool Player::AttemptMove(sf::Vector2i _direction)
 						m_level->LoadNextLevel();
 					}
 				}
+				else
 
+
+				{
+					// we were blocked!
+					// can we push the thing blocking us
+					// do a dynamic cast to a box to see if we can push it
+					Boulder* pushableBoulder = dynamic_cast<Boulder*>(blocker);
+
+					// if so (the thing is a box (not nullptr))
+					if (pushableBoulder != nullptr)
+					{
+						// attempt to push
+						bool pushSucceeded = pushableBoulder->AttemptPush(_direction);
+						// if push succeeded
+						if (pushSucceeded == true)
+						{
+							// move to new spot (where blocker was)
+							return m_level->MoveObjectTo(this, targetPos);
+						}
+					}
+
+
+				}
+
+				// if movement is blocked, do nothing, return false
+				// default
+
+				return false;
 			}
-
-			// if movement is blocked, do nothing, return false
-			// default
-
-			return false;
 
 		}
 	}

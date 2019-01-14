@@ -16,6 +16,36 @@ Boulder::Boulder()
 	m_blocksMovement = true;
 }
 
+bool Boulder::AttemptPush(sf::Vector2i _direction)
+{
+	// attempt to move the box in the given direction
+
+	// Get current position
+	//Calculate target position
+	sf::Vector2i targetPos = m_gridPosition + _direction;
+
+	// check if the space is empty
+	std::vector<GridObject*> targetCellContents = m_level->GetObjectAt(targetPos);
+
+	// Check if any of those objects block movement
+	bool blocked = false;
+	for (int i = 0; i < targetCellContents.size(); ++i)
+	{
+		if (targetCellContents[i]->GetBlocksMovement() == true)
+		{
+			blocked = true;
+
+		}
+
+	}
+	if (blocked == false)
+	{
+		bool moveSucceeded = m_level->MoveObjectTo(this, targetPos);
+
+
+		return moveSucceeded;
+	}
+}
 
 void Boulder::Update(sf::Time _frameTime)
 {
@@ -28,13 +58,7 @@ void Boulder::Update(sf::Time _frameTime)
 
 		m_secondsPerFall = 0;
 
-
-	/*	if (m_pendingFall.x != 0 || m_pendingFall.y != 0)
-		{
-			// move in that direction
-			bool moveSuccessful = AttemptFall(m_pendingFall);
-
-			m_secondsPerFall = 0;
+/*
 
 
 			// and clear the pending movement
@@ -76,25 +100,6 @@ bool Boulder::AttemptFall(sf::Vector2i _direction)
 		return m_level->MoveObjectTo(this, targetPos);
 
 	else
-	{
-		// we were blocked!
-		// can we push the thing blocking us
-		// do a dynamic cast to a box to see if we can push it
-		/*Box* pushableBox = dynamic_cast<Box*>(blocker);
-
-		// if so (the thing is a box (not nullptr))
-		if (pushableBox != nullptr)
-		{
-			// attempt to push
-			bool pushSucceeded = pushableBox->AttemptPush(_direction);
-			// if push succeeded
-			if (pushSucceeded == true)
-			{
-				// move to new spot (where blocker was)
-				return m_level->MoveObjectTo(this, targetPos);
-			} */
-		
-		
-	}
+	
 	return false;
 }

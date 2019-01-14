@@ -9,11 +9,12 @@ public:
 	Boulder();
 
 	//void Collide(GameObject& _collider);
+	bool AttemptPush(sf::Vector2i _direction);
 
 private:
 	void Update(sf::Time _frameTime);
 	bool AttemptFall(sf::Vector2i _direction);
-	bool IsFalling();
+	//bool IsFalling();
 
 	sf::Vector2i m_pendingFall;
 	float m_secondsPerFall;
