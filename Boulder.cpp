@@ -2,7 +2,9 @@
 #include "Boulder.h"
 #include "Framework/AssetManager.h"
 #include "Level.h"
+#include "Diamond.h"
 #include "Player.h"
+#include "Dirt.h"
 
 Boulder::Boulder()
 	: GridObject()
@@ -112,7 +114,37 @@ bool Boulder::AttemptFall(sf::Vector2i _direction)
 			m_level->ReloadLevel();
 			return true;
 		}
+		else
+		{
+			Boulder* castBoulder = dynamic_cast<Boulder*>(blocker); //cast to a boulder
+			Diamond* castDiamond = dynamic_cast<Diamond*>(blocker);
+			Dirt* castDirt = dynamic_cast<Dirt*>(blocker);
+
+			if (castBoulder != nullptr && _direction == sf::Vector2i(0,1))
+			{
+				bool moveSuccessful = AttemptFall(sf::Vector2i(1, 1));
+				return true;
+
+			}
+			else
+			{
+				if (castBoulder != nullptr && _direction == sf::Vector2i(1, 1))
+				{
+					bool moveSuccessful = AttemptFall(sf::Vector2i(-1, 1));
+					return true;
+				}
+				else
+					return false;
+			}
+			
+			
+
+			
+			
+			
+		}
 	}
 	
+			
 	return false;
 }
