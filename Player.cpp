@@ -15,6 +15,8 @@ Player::Player()
 	m_sprite.setTexture(AssetManager::GetTexture("graphics/player/playerStandDown.png"));
 	m_sound.setBuffer(AssetManager::GetSoundBuffer("audio/footstep1.ogg"));
 	m_bumpSound.setBuffer(AssetManager::GetSoundBuffer("audio/bump.wav"));
+
+	m_blocksMovement = true;
 };
 
 void Player::Input(sf::Event _gameEvent)
@@ -83,31 +85,6 @@ void Player::Update(sf::Time _frameTime)
 	}
 }
 
-void Player::Kill()
-{
-	// reload current level
-	if (m_level != nullptr)
-		m_level->ReloadLevel();
-}
-
-void Player::Collide(GameObject& _collider)
-{
-	/*Level* castLevel = dynamic_cast <Level*>(&_collider);
-	
-
-	// only do the thing if player is not null
-	if (castPlayer = nullptr)
-	{
-		//  we were touch by the player
-
-		// if the player has the key
-		if (castLevel->GetIsOpen())
-		{
-			castLevel->LoadNextLevel();
-		}
-
-	} */
-}
 
 
 

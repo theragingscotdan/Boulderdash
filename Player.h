@@ -15,8 +15,7 @@ public:
 	// overriding Methods
 	virtual void Input(sf::Event _gameEvent);
 	virtual void Update(sf::Time _frameTime);
-	void Kill();
-	void Collide(GameObject& _collider);
+
 
 private:
 

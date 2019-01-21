@@ -8,7 +8,7 @@ class Boulder : public GridObject
 public:
 	Boulder();
 
-	//void Collide(GameObject& _collider);
+	
 	bool AttemptPush(sf::Vector2i _direction);
 
 private:

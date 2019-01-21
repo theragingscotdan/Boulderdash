@@ -100,6 +100,19 @@ bool Boulder::AttemptFall(sf::Vector2i _direction)
 		return m_level->MoveObjectTo(this, targetPos);
 
 	else
+	{
+		Player* castPlayer = dynamic_cast <Player*>(blocker);
+
+		// only do the thing if player is not null
+		if (castPlayer != nullptr)
+		{
+			//  we were touch by the player
+
+			// KILL THEM!!!!!!! 
+			m_level->ReloadLevel();
+			return true;
+		}
+	}
 	
 	return false;
 }

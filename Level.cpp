@@ -255,7 +255,8 @@ void Level::LoadLevel(int _levelToLoad)
 
 void Level::ReloadLevel()
 {
-	LoadLevel(m_currentLevel);
+	m_pendingLevel = m_currentLevel;
+	//LoadLevel(m_currentLevel);
 	m_IsOpen = false;
 }
 

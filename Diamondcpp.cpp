@@ -1,6 +1,7 @@
 // project includes
 #include "Diamond.h"
 #include "Level.h"
+#include "Player.h"
 #include "Framework/AssetManager.h"
 
 
@@ -25,14 +26,7 @@ void Diamond::Update(sf::Time _frameTime)
 
 		m_secondsPerFall = 0;
 
-		/*
-
-
-					// and clear the pending movement
-					m_pendingFall = sf::Vector2i(0, 0);
-
-
-				} */
+		
 	}
 }
 
@@ -67,6 +61,19 @@ bool Diamond::AttemptFall(sf::Vector2i _direction)
 		return m_level->MoveObjectTo(this, targetPos);
 
 	else
+	{
+		Player* castPlayer = dynamic_cast <Player*>(blocker);
+
+		// only do the thing if player is not null
+		if (castPlayer != nullptr)
+		{
+			//  we were touch by the player
+
+			// KILL THEM!!!!!!! 
+			m_level->ReloadLevel();
+			return true;
+		}
+	}
 
 		return false;
 }
