@@ -11,7 +11,7 @@ Diamond::Diamond()
 	, m_secondsPerFall(0)
 	, m_IsFalling(true)
 {
-	m_sprite.setTexture(AssetManager::GetTexture("graphics/box.png"));
+	m_sprite.setTexture(AssetManager::GetTexture("graphics/diamond.gif"));
 	m_blocksMovement = true;
 }
 

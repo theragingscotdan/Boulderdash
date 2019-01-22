@@ -111,25 +111,30 @@ bool Boulder::AttemptFall(sf::Vector2i _direction)
 			//  we were touch by the player
 
 			// KILL THEM!!!!!!! 
+			// reload the level
 			m_level->ReloadLevel();
 			return true;
 		}
 		else
 		{
 			Boulder* castBoulder = dynamic_cast<Boulder*>(blocker); //cast to a boulder
-			Diamond* castDiamond = dynamic_cast<Diamond*>(blocker);
+			Diamond* castDiamond = dynamic_cast<Diamond*>(blocker); // cast to a diamond
 			Dirt* castDirt = dynamic_cast<Dirt*>(blocker);
 
-			if (castBoulder != nullptr && _direction == sf::Vector2i(0,1))
+			// if castBoulder or castDiamond is not a nullptr and _direction is going right
+			if ((castBoulder != nullptr || castDiamond != nullptr) && _direction == sf::Vector2i(0,1)) 
 			{
+				// fall diagonally to the right
 				bool moveSuccessful = AttemptFall(sf::Vector2i(1, 1));
 				return true;
 
 			}
 			else
 			{
-				if (castBoulder != nullptr && _direction == sf::Vector2i(1, 1))
+				// if castBoulder or castDiamond is not a nullptr and _direction is going left
+				if ((castBoulder != nullptr || castDiamond != nullptr) && _direction == sf::Vector2i(1, 1))
 				{
+					// fall diagonally left
 					bool moveSuccessful = AttemptFall(sf::Vector2i(-1, 1));
 					return true;
 				}

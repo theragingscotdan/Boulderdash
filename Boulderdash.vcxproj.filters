@@ -16,6 +16,9 @@
     <Filter Include="Framework">
       <UniqueIdentifier>{246f7254-eea1-4067-a3b6-69ec365056b2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Levels">
+      <UniqueIdentifier>{af96c445-8e61-4568-ad44-a5d4cf40b180}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -107,5 +110,22 @@
     <ClInclude Include="Exit.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="levels\Level5.txt">
+      <Filter>Levels</Filter>
+    </Text>
+    <Text Include="levels\Level4.txt">
+      <Filter>Levels</Filter>
+    </Text>
+    <Text Include="levels\Level3.txt">
+      <Filter>Levels</Filter>
+    </Text>
+    <Text Include="levels\Level1.txt">
+      <Filter>Levels</Filter>
+    </Text>
+    <Text Include="levels\Level2.txt">
+      <Filter>Levels</Filter>
+    </Text>
   </ItemGroup>
 </Project>
