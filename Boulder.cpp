@@ -36,6 +36,7 @@ bool Boulder::AttemptPush(sf::Vector2i _direction)
 		if (targetCellContents[i]->GetBlocksMovement() == true)
 		{
 			blocked = true;
+			return false;
 
 		}
 
