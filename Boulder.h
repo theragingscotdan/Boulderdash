@@ -10,11 +10,12 @@ public:
 
 	
 	bool AttemptPush(sf::Vector2i _direction);
+	void Update(sf::Time _frameTime);
 
 private:
-	void Update(sf::Time _frameTime);
+	
 	bool AttemptFall(sf::Vector2i _direction);
-	//bool IsFalling();
+	
 
 	sf::Vector2i m_pendingFall;
 	float m_secondsPerFall;

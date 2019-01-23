@@ -8,9 +8,10 @@ class Diamond : public GridObject
 
 public:
 	Diamond();
+	void Update(sf::Time _frameTime);
 
 private:
-	void Update(sf::Time _frameTime);
+	
 	bool AttemptFall(sf::Vector2i _direction);
 
 	sf::Vector2i m_pendingFall;

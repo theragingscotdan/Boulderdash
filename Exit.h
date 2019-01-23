@@ -14,8 +14,6 @@ public:
 		
 private:
 
-	//Level* m_level;
-
 	
 	
 };

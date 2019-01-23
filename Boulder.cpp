@@ -41,6 +41,8 @@ bool Boulder::AttemptPush(sf::Vector2i _direction)
 		}
 
 	}
+
+	
 	if (blocked == false)
 	{
 		bool moveSucceeded = m_level->MoveObjectTo(this, targetPos);
@@ -61,14 +63,6 @@ void Boulder::Update(sf::Time _frameTime)
 
 		m_secondsPerFall = 0;
 
-/*
-
-
-			// and clear the pending movement
-			m_pendingFall = sf::Vector2i(0, 0);
-
-
-		} */
 	}
 }
 
@@ -120,8 +114,7 @@ bool Boulder::AttemptFall(sf::Vector2i _direction)
 		{
 			Boulder* castBoulder = dynamic_cast<Boulder*>(blocker); //cast to a boulder
 			Diamond* castDiamond = dynamic_cast<Diamond*>(blocker); // cast to a diamond
-			Dirt* castDirt = dynamic_cast<Dirt*>(blocker);
-
+			
 			// if castBoulder or castDiamond is not a nullptr and _direction is going right
 			if ((castBoulder != nullptr || castDiamond != nullptr) && _direction == sf::Vector2i(0,1)) 
 			{
