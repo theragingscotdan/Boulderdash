@@ -390,19 +390,11 @@ bool Level::CheckComplete()
 		}
 	}
 
-
-
+	
 	// all boxes were stored! (none we unstored
 	// so we completed the level
 	m_IsOpen = true;
-	// TODO: Play victory music!
-
-	// queue the next level to load during the next update
-	// (if we do it right way, we get an access violation
-	// due to update still running)
-	/*if (m_IsOpen == true)
-		m_pendingLevel = m_currentLevel + 1;
-	*/
+	
 
 	
 	// The level is complete so return true

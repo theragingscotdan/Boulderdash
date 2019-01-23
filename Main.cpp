@@ -33,10 +33,7 @@ int main()
 
 	// set up level
 	Level ourLevel;
-
-	// Game state
-	//bool playing = false;
-
+	
 	
 		
 	// -----------------------------------------------

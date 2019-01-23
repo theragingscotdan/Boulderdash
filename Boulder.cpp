@@ -143,10 +143,7 @@ bool Boulder::AttemptFall(sf::Vector2i _direction)
 					return false;
 			}
 			
-			
-
-			
-			
+						
 			
 		}
 	}
