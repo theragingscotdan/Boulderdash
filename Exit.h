@@ -9,8 +9,13 @@ class Exit : public GridObject
 public:
 	Exit();
 
+	virtual void Update(sf::Time _frameTime);
+
 		
 private:
 
+	//Level* m_level;
+
+	
 	
 };

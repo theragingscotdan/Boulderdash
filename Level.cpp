@@ -109,7 +109,6 @@ void Level::LoadLevel(int _levelToLoad)
 	// clean up the old level
 
 	// delete any data already in the level
-	// TODO
 	// rows
 	for (int y = 0; y < m_contents.size(); ++y)
 	{
@@ -256,7 +255,6 @@ void Level::LoadLevel(int _levelToLoad)
 void Level::ReloadLevel()
 {
 	m_pendingLevel = m_currentLevel;
-	//LoadLevel(m_currentLevel);
 	m_IsOpen = false;
 }
 
@@ -335,15 +333,8 @@ bool Level::DeleteObject(GridObject* _toDelete)
 				m_contents[oldPos.y][oldPos.x].erase(it);
 
 				delete _toDelete;
-
-
-				// add it to its new position
-				//m_contents[_targetPos.y][_targetPos.x].push_back(_toMove);
-				//m_contents.clear();
-
-				// tell the object its new position
-				//_toMove->SetGridPosition(_targetPos);
-
+				
+			
 				// return sucess
 				return true;
 
